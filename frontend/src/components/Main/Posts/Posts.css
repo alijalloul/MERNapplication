@@ -1,0 +1,37 @@
+.posts_container{
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 23%);
+    justify-content: space-around;
+    row-gap: 30px;
+
+    margin-left: 50px;
+}
+
+.post_container{
+    overflow: hidden;
+
+    position: relative;
+    background-color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px black;
+
+    min-height: fit-content;
+    height: 42vh;
+    
+}
+
+@media only screen and (max-width: 500px) {
+    .posts_container{
+        grid-template-columns: 90%;
+        margin: 0;
+    }
+}

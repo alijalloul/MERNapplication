@@ -1,0 +1,35 @@
+.deleteBtn{
+    border: none;
+    background-color: transparent;
+
+    width: 15px;
+    aspect-ratio: 1;
+
+    transition: all .2s ease-in-out;
+}
+
+.DeleteSVG{
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    fill: white;
+    stroke: black;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    transition: all .2s ease-in-out;
+}
+
+.DeleteSVG:hover{
+    stroke: white;
+    fill: red;
+}
+
+@media only screen and (max-width: 500px) {    
+    .deleteBtn{
+        width: 40px;
+    }
+}

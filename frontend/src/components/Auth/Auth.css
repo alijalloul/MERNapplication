@@ -1,0 +1,159 @@
+.formContainerContainer{
+    width: 100vw;
+    height: calc(100vh - 100px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(187,255,248);
+    background: linear-gradient(45deg, rgba(187,255,248,1) 0%, rgba(255,199,244,1) 100%); 
+}
+
+.formContainer{
+    width: 30vw;
+    min-width: fit-content;
+    height: fit-content;
+
+    padding: 25px;
+
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+.formContainer form input{
+    outline: none;
+    padding: 8px 15px;
+
+    transition: all .2s ease-in-out;
+}
+.formContainer form input:focus{
+    outline: none;
+    padding: 10px 20px;
+}
+
+.authFormHeader{
+    margin-bottom: 20px;
+}
+
+.lableInput{
+    position: relative;
+    top: 10px;
+    left: 10px;
+
+    font-weight: lighter;
+    font-size: .8vw;
+
+    padding: 0 5px;
+
+    width: fit-content;
+    height: fit-content;
+
+    background-color: white;
+
+    transition: all .2s ease-in-out;
+}
+.flName{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 5px;
+}
+
+.flName input{
+    width: 100%;
+}
+.email{
+    width: 100%;
+}
+
+.passwordContainer{
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    border: 1px grey solid;
+    background-color: white;
+}
+.passwordContainer input{
+    border: none;
+
+    padding: 0;
+    width: 90%;
+}
+.passwordContainer button{
+    width: 25px;
+    aspect-ratio: 1;
+}
+.repassword{
+
+    width: 100%;
+}
+
+.signupinContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 5px;
+}
+.signupin{
+    width: 100%;
+    padding: 10px 0;
+
+    border: none;
+    background-color: rgb(90, 190, 255);
+    color: white;
+}
+
+.googleLogInContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 15px;
+}
+
+.switchContainer{
+    display: flex;
+    
+}
+
+.switchContainer button{
+    margin-left: 5px;
+    background-color: transparent;
+    border: none;
+
+    transition: all 0.1s ease-in-out;
+}
+
+.switchContainer button:hover{
+    color: rgb(90, 190, 255);
+}
+
+.error{
+    color: red;
+    font-size: .8vw;
+}
+.inputError{
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 500px) {    
+    .formContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .formContainer form{
+        height: 70%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+    }
+}

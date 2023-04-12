@@ -1,0 +1,69 @@
+nav{
+    width: 100vw;
+    padding: 0 50px;
+
+    background-color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 2px black solid;
+}
+
+.userProfileLogout{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+.userProfileLogout img{
+    border-radius: 50%;
+
+    width: 40px;
+    height: 40px;
+
+    margin-right: 10px;
+}
+.userProfileLogout button{
+    padding: 5px 10px;
+
+    border: none;
+    border-radius: 20px;
+}
+
+.signInBtn{
+    padding: 5px 8px;
+}
+
+@media only screen and (max-width: 500px) {    
+    nav{
+        padding: 0;
+    }
+    .header_img{
+        width: 60vw;
+    }
+    
+    .userProfileLogout{
+        display: flex;
+        justify-content: center;
+        align-items: center;   
+
+        margin-right: 15px;
+    }
+    .userProfileLogout img{    
+        width: 30px;
+        height: 30px;    
+    }
+    .userProfileLogout button{
+        padding: 10px 10px;
+    
+        border: none;
+        border-radius: 10px;
+    }
+    
+    .signInBtn{
+        padding: 10px 10px;
+
+        margin-right: 15px;
+    }
+}

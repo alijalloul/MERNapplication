@@ -1,0 +1,107 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const baseURL = `http://localhost:${process.env.PORT || 5000}`;
+//const baseURL = "https://server-y1as.onrender.com";
+
+const userSlice = createSlice({
+    name: "user",
+    initialState: {
+        userInfo: {},
+        pending: false,
+        error: false
+    },
+    reducers: {
+        startAPI: (state) => {
+            state.pending = true;
+        },
+        loginSuccess: (state, action) => {
+            state.pending = false;
+            localStorage.setItem('profile', JSON.stringify({ ...action?.payload}));
+            state.userInfo = action?.payload.result;
+        },
+        logoutSuccess: (state) => {
+            state.pending = false;
+            state.userInfo = null;
+            localStorage.clear();
+        },
+        errorAPI: (state) => {
+            state.pending = null;
+            state.error = true;
+        }
+    }
+});
+
+export const googleLogin = (userInfo, dispatch) => {
+    dispatch(userSlice.actions.startAPI());
+
+    try {
+        dispatch(userSlice.actions.loginSuccess(userInfo));
+    } catch (error) {
+        dispatch(userSlice.actions.errorAPI());
+        console.log("error: ", error);
+    }
+}
+export const login = async (userInfo, navigate, dispatch) => {
+    dispatch(userSlice.actions.startAPI());
+
+    try {
+        
+        const res = await fetch(`${baseURL}/users/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userInfo)
+        });
+
+        const data = await res.json();
+        console.log();
+        
+        dispatch(userSlice.actions.loginSuccess(data));
+
+        navigate("/");
+    } catch (error) {
+        dispatch(userSlice.actions.errorAPI());
+        console.log("error: ", error);
+    }
+}
+export const signup = async (userInfo, navigate, dispatch) => {
+    dispatch(userSlice.actions.startAPI());
+
+    try {
+        
+        const res = await fetch(`${baseURL}/users/signup`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userInfo)
+        });
+
+        const data = await res.json();
+
+        if(data?.message === "Account already exists."){
+            return data;
+        }
+
+        dispatch(userSlice.actions.loginSuccess(data));
+        navigate("/");
+    } catch (error) {
+        dispatch(userSlice.actions.errorAPI());
+        console.log("error: ", error);
+    }
+}
+export const logout = (navigate, dispatch) => {
+    dispatch(userSlice.actions.startAPI());
+
+    try {
+        dispatch(userSlice.actions.logoutSuccess());
+
+        navigate("/");
+    } catch (error) {
+        dispatch(userSlice.actions.errorAPI());
+        console.log("error: ", error);
+    }
+}
+
+export default userSlice.reducer;

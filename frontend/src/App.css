@@ -1,0 +1,29 @@
+@font-face {
+    font-family: NeonRetro;
+    font-style: normal;
+    font-weight: normal;
+    src: url("./fonts/NeonRetroDemoVersionRegular-rgPdx.otf") format("opentype");;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    font-family: 'Lora', serif;
+}
+
+button:hover, a:hover{
+    cursor: pointer;
+}
+.container{
+    position: relative;
+
+    overflow-x: hidden;
+    
+    width: 100vw;
+    height: 100vh;
+    min-height: fit-content;
+
+    background-color: rgb(250, 250, 250);
+}

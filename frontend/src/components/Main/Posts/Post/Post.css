@@ -1,0 +1,160 @@
+.post{
+    width: 100%;
+    height: 100%;
+}
+
+.post_top_container{
+    position: relative;
+
+    width: 100%;
+    height: 45%;
+
+    color: white;
+}
+.post_top{
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    justify-content: space-between;
+
+    padding: 5px 10px;
+}
+.post_top_container .post_image_container{
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+}
+.post_top_container .post_image_container img{
+    position: relative;
+    object-fit: cover;
+
+    width: 100%;
+    height: 100%;
+
+    filter: brightness(70%);
+
+    transition: all .2s ease-in-out;
+}
+
+.post_top_container:hover .post_image_container img{
+    cursor: pointer;
+    filter: brightness(50%);
+}
+
+
+.post_bottom{
+    position: relative;
+
+    width: 100%;
+    height: 55%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 0 15px;
+}
+.post_tags{
+}
+.post_bottom_text{
+    position: relative;
+    height: 70%;
+
+    overflow: hidden;
+}
+.post_message::before{
+    content:'';
+    width:100%;
+    height:100%;    
+    position:absolute;
+    left:0;
+    top:0;
+    background:linear-gradient(transparent 50%, white 95%);
+  }
+.post_bottom_btns{
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.like{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+
+.post_name{
+    font-size: 1.5vw;
+}
+.post_date{
+    font-size: 0.7vw;
+}
+
+.post_tags{
+    font-size: .8vw;
+}
+.post_title{
+    font-size: 1.5vw;
+    margin: 15px 0;
+}
+.post_message{
+    font-size: 0.8vw;
+}
+
+@media only screen and (max-width: 500px) {    
+    .post_tags{
+        font-size: 3vw;
+    }
+    .post_bottom_text{
+        position: relative;
+        height: 70%;
+    
+        overflow: hidden;
+    }
+    .post_message::before{
+        content:'';
+        width:100%;
+        height:100%;    
+        position:absolute;
+        left:0;
+        top:0;
+        background:linear-gradient(transparent 50%, white 95%);
+      }
+    .post_bottom_btns{
+        width: 100%;
+    
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .like{
+        width: fit-content;
+        display: flex;
+        align-items: center;
+    }
+    .likesnb{
+        font-size: 4vw;
+    }
+    
+    .post_name{
+        font-size: 6vw;
+    }
+    .post_date{
+        font-size: 3vw;
+    }
+    
+    .post_tags{
+        font-size: 3.2vw;
+    }
+    .post_title{
+        font-size: 6vw;
+        margin: 15px 0;
+    }
+    .post_message{
+        font-size: 3.2vw;
+    }
+}

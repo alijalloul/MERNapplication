@@ -1,0 +1,43 @@
+.searchbar_container{
+    background-color: white;
+
+    box-shadow: 3px 3px 8px rgb(97, 97, 97);
+
+    padding: 20px;
+    padding-top: 0;
+
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 10px;
+}
+.searchbar_header{
+    font-size: 1.5vw;
+    margin: 10px 0;
+}
+.searchbar_input_text{
+    width: 100%;
+    padding: 5px;
+
+    outline: none;
+
+    margin-bottom: 10px;
+}
+
+.searchbar_input_btn{
+    margin-top: 10px;
+    border: none;
+    padding: 5px;
+    width: 100%;
+
+    background-color: rgb(64, 64, 230);
+    color: white;
+
+    transition: all .2s ease-in-out;
+}
+.searchbar_input_btn:hover{
+    background-color: rgb(53, 53, 196);
+}

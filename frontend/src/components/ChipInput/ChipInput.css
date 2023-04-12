@@ -1,0 +1,61 @@
+.chips_container{
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    border: 1px black solid;
+
+    overflow-x: hidden;
+
+}
+.chips{
+    
+}
+
+.chip_container{
+    display: inline-block;
+    margin-bottom: 6px;
+}
+.chip{
+    display: flex;
+    align-items: center;
+
+    padding: 5px;
+
+    background-color: rgb(232, 232, 232);
+    color: rgb(39, 39, 39);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+
+    border-radius: 2px;
+    margin-right: 10px;
+}
+
+.chipText{
+    margin-right: 5px;
+
+    font-size: 15px;
+}
+
+.removeChipBtn{
+    border: none;
+    background-color: grey;
+    border-radius: 50%;
+    padding: 2px;
+
+    width: 15px;
+    aspect-ratio: 1;
+
+    color: rgb(232, 232, 232);
+    font-size: .7vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}   
+
+.chipsInput{
+    display: inline-block;
+    max-width: 30%;
+
+    border: none;
+    outline: none;
+}

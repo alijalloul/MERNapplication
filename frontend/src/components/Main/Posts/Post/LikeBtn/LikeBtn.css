@@ -1,0 +1,40 @@
+.likeBtn{
+    border: none;
+    background-color: transparent;
+
+    width: 15px;
+    aspect-ratio: 1;
+}
+.likeBtn[disabled]{
+    cursor: not-allowed;
+}
+.likeSVG{
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    stroke-linecap: round;
+    stroke-linejoin:round;
+    stroke-width: 1;
+
+    fill: white;
+    stroke: blue;
+
+    transition: all .2s ease-in-out;
+}
+
+.likeBtn[clicked="true"] .likeSVG{
+    fill: blue;
+    stroke: white;
+}
+.likeBtn[disabled] .likeSVG{
+    fill: rgb(232, 232, 232);
+    stroke: darkgray;
+}
+
+@media only screen and (max-width: 500px) {    
+    .likeBtn{
+        width: 40px;
+    }
+}
