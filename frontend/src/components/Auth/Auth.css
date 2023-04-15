@@ -27,38 +27,15 @@
 
     transition: all .2s ease-in-out;
 }
-.formContainer form input:focus{
-    outline: none;
-    padding: 10px 20px;
-}
 
 .authFormHeader{
     margin-bottom: 20px;
 }
 
-.lableInput{
-    position: relative;
-    top: 10px;
-    left: 10px;
-
-    font-weight: lighter;
-    font-size: .8vw;
-
-    padding: 0 5px;
-
-    width: fit-content;
-    height: fit-content;
-
-    background-color: white;
-
-    transition: all .2s ease-in-out;
-}
 .flName{
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    margin-bottom: 5px;
 }
 
 .flName input{
@@ -97,7 +74,7 @@
     display: flex;
     justify-content: center;
 
-    margin-bottom: 5px;
+    margin-bottom: 12px;
 }
 .signupin{
     width: 100%;
@@ -138,9 +115,50 @@
     font-size: .8vw;
 }
 .inputError{
-    margin-bottom: 5px;
+    position: relative;
+
+    margin-bottom: 12px;
     width: 100%;
 }
+
+.lableInput{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-weight: lighter;
+    font-size: 1vw;
+    opacity: 0.5;
+
+    background-color: white;
+
+    transition: all .2s ease-in-out;
+
+    pointer-events: none;
+}
+
+.formContainer form input:focus{
+    outline: skyblue;
+    padding: 10px 20px;
+}
+
+.inputError input:focus ~ .lableInput{
+    z-index: 1;
+    top: 0;
+    left: 1vw;
+    font-size: 0.8vw;
+    transform: translate(0, -50%);
+    
+    padding: 0 5px;
+    background-color: white;
+    opacity: 1;
+
+    pointer-events: auto;
+    width: fit-content;
+}
+
+
 
 @media only screen and (max-width: 500px) {    
     .formContainer{

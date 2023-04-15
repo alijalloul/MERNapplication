@@ -112,6 +112,7 @@ const Auth = () => {
             setFormErrors((prevFormErrors) => ({...prevFormErrors,  accountExists: ""}));
         }
     }
+    
   return (
     <div className="formContainerContainer">
         <div className="formContainer">
@@ -120,14 +121,14 @@ const Auth = () => {
                 {
                     isSignup && (<div className="flName">
                                     <div className='inputError' style={{width: "45%"}}>
+                                        <input type="text" name="firstName" className="firstName" onChange={ handleChange }></input>
                                         <h5 className="lableInput">First Name</h5>
-                                        <input type="text" name="firstName" className="firstName" placeholder='Pizza' onChange={ handleChange }></input>
                                         {formErrors.firstNameError && (<div className="error">{formErrors.firstNameError}</div>)}
                                     </div>
                                     
                                     <div className='inputError' style={{width: "45%"}}>
+                                        <input type="text" name="lastName" className="lastName" onChange={ handleChange }></input>
                                         <h5 className="lableInput">Last Name</h5>
-                                        <input type="text" name="lastName" className="lastName" placeholder='Huts' onChange={ handleChange }></input>
                                         {formErrors.lastNameError && (<div className="error">{formErrors.lastNameError}</div>)}
                                     </div>
                                 </div>)
@@ -135,8 +136,8 @@ const Auth = () => {
                 
                 
                 <div className='inputError'>
+                    <input type="email" name="email" className="email" onChange={ handleChange }></input>
                     <h5 className="lableInput">E-Mail</h5>
-                    <input type="email" name="email" className="email" placeholder='pizza@huts.com' onChange={ handleChange }></input>
                     {
                         formErrors.emailError ? (
                             <div className="error">{formErrors.emailError}</div>
@@ -149,9 +150,9 @@ const Auth = () => {
                 </div>
 
                 <div className='inputError'>
-                    <h5 className="lableInput">Password</h5>
                     <div className="passwordContainer"> 
-                        <input type={ passVisible ? "text" : "password" } name="password" className="password" placeholder='123' onChange={ handleChange }></input>
+                        <input type={ passVisible ? "text" : "password" } name="password" className="password" onChange={ handleChange }></input>
+                        <h5 className="lableInput">Password</h5>
                         <button style={{backgroundColor: "transparent", border: "none"}} onClick={ handlePassVisible }>{passVisible ? <HideSVG /> : <ShowSVG />}</button>
                     </div>
 
@@ -161,8 +162,8 @@ const Auth = () => {
                     isSignup && (
                         
                         <div className='inputError'>
-                            <h5 className="lableInput">Re-Enter Password</h5>
                             <input type="password" name="repassword" className="repassword" onChange={ handleChange }></input>
+                            <h5 className="lableInput">Re-Enter Password</h5>
                             {formErrors.repasswordError && (<div className="error">{formErrors.repasswordError}</div>)}
                         </div>
                     )

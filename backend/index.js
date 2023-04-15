@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json({limit:'50mb'}));
 
 const imagesFolder = "./postImages";
-const atlasURL = "mongodb+srv://reactjsdatabase:12345@cluster0.1djt5oa.mongodb.net/?retryWrites=true&w=majority";    
+const atlasURL = "mongodb+srv://reactjsdatabase:12345@cluster0.1djt5oa.mongodb.net/test?retryWrites=true&w=majority";    
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(atlasURL)

@@ -1,14 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { likePost } from "../../../../../redux/Post.js";
 
 import "./LikeBtn.css"
 const LikeBtn = ({ userLiked, user, postInfoId}) => {
     const dispatch = useDispatch();
+    const pendingLike = useSelector(state => state.post.pending).likePost;
 
     return(
-        <button className="likeBtn" clicked={userLiked} disabled={ !user?.result } onClick={() => {likePost(postInfoId, dispatch)}}>
+        <button className="likeBtn" clicked={userLiked} disabled={ !user?.result || pendingLike } onClick={() => {likePost(postInfoId, dispatch)}}>
             <svg className="likeSVG" viewBox="-2.1 -2.1 25.20 25.20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <g id="SVGRepo_bgCarrier"></g>
                 <g id="SVGRepo_tracerCarrier" ></g>

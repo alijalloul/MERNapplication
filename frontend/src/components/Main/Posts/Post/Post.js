@@ -88,9 +88,7 @@ const Post = ({postInfo, setSelectedPostId}) => {
                     </div>
                     <div className="delete">
                         { 
-                            ((user?.result?.sub === postInfo?.creatorID || user?.result?._id === postInfo?.creatorID) && (user?.result)) ? (
-                                <DeleteBtn postInfoId={postInfo._id}/>
-                            ) : (
+                            ((user?.result?.sub === postInfo?.creatorID || user?.result?._id === postInfo?.creatorID) && (user?.result)) && (
                                 <DeleteBtn postInfoId={postInfo._id}/>
                             )
                         }
