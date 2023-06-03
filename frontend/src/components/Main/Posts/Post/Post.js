@@ -13,7 +13,7 @@ import "./Post.css";
 const Post = ({postInfo, setSelectedPostId}) => {
     const navigate = useNavigate();
     const userInfo = useSelector( state => state).user;
-    const [ user, setUser ] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [ user, setUser ] = useState((typeof window !== 'undefined') && JSON.parse(localStorage.getItem('profile')));
     const userLiked = postInfo.likes.find(like => like === (user?.result?.sub || user?.result?._id)) 
         ? (   
             "true"
@@ -88,7 +88,9 @@ const Post = ({postInfo, setSelectedPostId}) => {
                     </div>
                     <div className="delete">
                         { 
-                            ((user?.result?.sub === postInfo?.creatorID || user?.result?._id === postInfo?.creatorID) && (user?.result)) && (
+                            ((user?.result?.sub === postInfo?.creatorID || user?.result?._id === postInfo?.creatorID) && (user?.result)) ? (
+                                <DeleteBtn postInfoId={postInfo._id}/>
+                            ) : (
                                 <DeleteBtn postInfoId={postInfo._id}/>
                             )
                         }

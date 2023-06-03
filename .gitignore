@@ -1,2 +1,5 @@
-backend/node_modules/*
-frontend/node_modules/*
+backend/node_modules
+backend/package-lock.json
+frontend/node_modules
+frontend/build
+frontend/package-lock.json

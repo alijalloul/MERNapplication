@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const baseURL = `http://localhost:${process.env.PORT || 5000}`;
-//const baseURL = "https://server-y1as.onrender.com";
+const baseURL = process.env.REACT_APP_SERVER_URL || "http://localhost:5000";
 
 const postSlice = createSlice({
     name: "posts",
@@ -118,7 +117,7 @@ export const createPost = async (postsInfo, navigate, dispatch) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "authorization": `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`
+                "authorization": `Bearer ${JSON.parse((typeof window !== 'undefined') && localStorage.getItem("profile")).token}`
             },
             body: JSON.stringify(postsInfo)
         });
@@ -141,7 +140,7 @@ export const updatePost = async (selectedPostId, postsInfo, dispatch) => {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                "authorization": `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`
+                "authorization": `Bearer ${JSON.parse((typeof window !== 'undefined') && localStorage.getItem("profile")).token}`
             },
             body: JSON.stringify(postsInfo)
         });
@@ -157,10 +156,9 @@ export const deletePost = async (selectedPostId, dispatch) => {
     dispatch(postSlice.actions.startAPI("deletePost"));
 
     try {
-        
         await fetch(`${baseURL}/${selectedPostId}`, {
             method: "DELETE",
-            "authorization": `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`
+            "authorization": `Bearer ${JSON.parse((typeof window !== 'undefined') && localStorage.getItem("profile")).token}`
         });    
         dispatch(postSlice.actions.deleteSuccess(selectedPostId));
     } catch (error) {
@@ -177,7 +175,7 @@ export const likePost = async (selectedPostId, dispatch) => {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                "authorization": `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`
+                "authorization": `Bearer ${JSON.parse((typeof window !== 'undefined') && localStorage.getItem("profile")).token}`
             }
         });
 
@@ -198,7 +196,7 @@ export const postComment = async (commentInfo, selectedPostId, dispatch) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "authorization": `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`
+                "authorization": `Bearer ${JSON.parse((typeof window !== 'undefined') && localStorage.getItem("profile")).token}`
             },
             body: JSON.stringify({commentInfo})
         });

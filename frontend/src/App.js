@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation  } from "react-router-dom";
 
 import Nav from "./components/Nav/Nav.js";
 import Main from "./components/Main/Main.js";
@@ -9,13 +9,13 @@ import PostDetails from "./components/PostDetails/PostDetails.js"
 import "./App.css";
 
 const App = () => {
+    const location = useLocation();
 
-    console.log("baseURL env: ", process.env.BASE_URL);
     return (
-        <BrowserRouter>
+        <>
             <div className="container">
                 <Nav />
-                <Routes>
+                <Routes location={location} key={location.pathname}> 
                     <Route path="/" element={ <Navigate to="/posts"/> } />
                     <Route path="/posts" element={<Main />}/>
                     <Route path="/posts/search" element={<Main />}/>
@@ -23,7 +23,7 @@ const App = () => {
                     <Route path="/auth" element={<Auth />}/>
                 </Routes>
             </div>
-        </BrowserRouter>
+        </>
     );
 }
 

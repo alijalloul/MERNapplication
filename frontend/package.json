@@ -3,11 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/register": "^7.21.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "dotenv": "^16.1.3",
     "firebase": "^9.19.1",
+    "ignore-styles": "^5.0.1",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
@@ -21,9 +27,9 @@
     "web-vitals": "^2.1.4"
   },
   "main": "./src/index.js",
-  "type": "module",
   "scripts": {
     "start": "react-scripts start",
+    "ssr": "npm -s run build && node server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

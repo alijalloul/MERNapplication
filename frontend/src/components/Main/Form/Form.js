@@ -13,7 +13,7 @@ const Form = ({ selectedPostId, setSelectedPostId }) => {
     const navigate = useNavigate();
     const post = useSelector( state => selectedPostId ? state.post.postsInfo.find( p => p._id === selectedPostId) : null);
     const userInfo = useSelector( state => state).user;
-    const [ user, setUser ] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [ user, setUser ] = useState((typeof window !== 'undefined') && JSON.parse(localStorage.getItem('profile')));
     const [postsInfo, setpostsInfo] = useState({
         title: "",
         message: "",

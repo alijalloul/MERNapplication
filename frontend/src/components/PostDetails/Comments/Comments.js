@@ -9,7 +9,7 @@ const Comments = ({ post }) => {
     const dispatch = useDispatch();
     const [comments, setComments] = useState(post?.comments); 
     const [comment, setComment] = useState(""); 
-    const user = JSON.parse(localStorage.getItem("profile"));
+    const user = JSON.parse((typeof window !== 'undefined') && localStorage.getItem("profile"));
 
     const loadComment = useSelector(state => state.post.pending.postComment);
 

@@ -13,7 +13,7 @@ const Nav = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [ user, setUser ] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [ user, setUser ] = useState((typeof window !== 'undefined') && JSON.parse(localStorage.getItem('profile')));
 
     useEffect(() => {
         const token = user?.token;
@@ -23,7 +23,7 @@ const Nav = () => {
             if(decodedToken.exp * 1000 < new Date().getTime()) logout(navigate, dispatch);
         }
 
-        setUser(JSON.parse(localStorage.getItem("profile")));
+        setUser(JSON.parse((typeof window !== 'undefined') && localStorage.getItem("profile")));
     },[location]);
 
     const handleLogout = () => {

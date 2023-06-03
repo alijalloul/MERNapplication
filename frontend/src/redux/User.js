@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const baseURL = `http://localhost:${process.env.PORT || 5000}`;
-//const baseURL = "https://server-y1as.onrender.com";
+const baseURL = process.env.REACT_APP_SERVER_URL || "http://localhost:5000";
 
 const userSlice = createSlice({
     name: "user",
@@ -16,13 +15,17 @@ const userSlice = createSlice({
         },
         loginSuccess: (state, action) => {
             state.pending = false;
-            localStorage.setItem('profile', JSON.stringify({ ...action?.payload}));
+            if(typeof window !== 'undefined'){
+                localStorage.setItem('profile', JSON.stringify({ ...action?.payload}));
+            }
             state.userInfo = action?.payload.result;
         },
         logoutSuccess: (state) => {
             state.pending = false;
             state.userInfo = null;
-            localStorage.clear();
+            if(typeof window !== 'undefined'){
+                localStorage.clear();
+            }
         },
         errorAPI: (state) => {
             state.pending = null;
