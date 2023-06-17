@@ -11,7 +11,7 @@ import HideSVG from "./HideSVG/HideSVG.js";
 import "./Auth.css";
 
 const Auth = () => {
-    const CLIENT_ID = "18229699408-lt9gun1vb3r6moqak9fs3oh21sugscb1.apps.googleusercontent.com";
+    const CLIENT_ID = "288887713982-gu7t9k6d742i3inhnaqk4549tob2ud64.apps.googleusercontent.com";
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
