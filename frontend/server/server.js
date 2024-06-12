@@ -15,6 +15,7 @@ import User from "../src/redux/User.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
+console.log(PORT);
 const app = express();
 
 if (process.env.PORT) {
@@ -62,7 +63,11 @@ app.get("/*", (req, res, next) => {
     }
 
     //return res.status(200);
-    return res.send(data.replace('<div id="root"></div>', `<div id="root">${html}</div>`).replace("__PRELOADED_STATE__", JSON.stringify(preloadedState)));
+    return res.send(
+      data
+        .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+        .replace("__PRELOADED_STATE__", JSON.stringify(preloadedState))
+    );
   });
 });
 

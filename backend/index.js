@@ -31,12 +31,17 @@ if (process.env.PORT) {
 }
 
 const imagesFolder = "./postImages";
-const atlasURL = "mongodb+srv://reactjsdatabase:12345@cluster0.1djt5oa.mongodb.net/test?retryWrites=true&w=majority";
+const atlasURL =
+  "mongodb+srv://reactjsdatabase:12345@cluster0.1djt5oa.mongodb.net/test?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
 
 mongoose
   .connect(atlasURL)
-  .then(() => app.listen(PORT, () => console.log(`Successfully connected to port ${PORT}`)))
+  .then(() =>
+    app.listen(PORT, () =>
+      console.log(`Successfully connected to port ${PORT}`)
+    )
+  )
   .catch((error) => console.log("There was an error: ", error));
 
 //app.listen(PORT, () => console.log(`Successfully connected to port ${PORT}`));
@@ -52,7 +57,11 @@ app.get("/posts", async (req, res) => {
     const startIndex = (Number(page) - 1) * LIMIT;
     const totalPosts = await postDB.countDocuments({});
 
-    const posts = await postDB.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
+    const posts = await postDB
+      .find()
+      .sort({ _id: -1 })
+      .limit(LIMIT)
+      .skip(startIndex);
 
     posts.map((post) => {
       const imagePath = path.join(imagesFolder, post.file);
@@ -61,13 +70,19 @@ app.get("/posts", async (req, res) => {
       if (fs.existsSync(imagePath)) {
         base64Data = fs.readFileSync(imagePath, { encoding: "base64" });
       } else {
-        base64Data = fs.readFileSync("./postImages/notfound.jpeg").toString("base64");
+        base64Data = fs
+          .readFileSync("./postImages/notfound.jpeg")
+          .toString("base64");
       }
 
       post.file = "data:image/png;base64," + base64Data;
     });
 
-    res.json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(totalPosts / LIMIT) });
+    res.json({
+      data: posts,
+      currentPage: Number(page),
+      numberOfPages: Math.ceil(totalPosts / LIMIT),
+    });
   } catch (error) {
     res.send("There was an error: ", error);
   }
@@ -80,7 +95,9 @@ app.get("/posts/search", async (req, res) => {
     const startIndex = (Number(page) - 1) * LIMIT;
 
     const title = new RegExp(searchQuery, "i");
-    const totalPosts = await postDB.countDocuments({ $or: [{ title }, { tags: { $in: tags.split(",") } }] });
+    const totalPosts = await postDB.countDocuments({
+      $or: [{ title }, { tags: { $in: tags.split(",") } }],
+    });
 
     const posts = await postDB
       .find({ $or: [{ title }, { tags: { $in: tags.split(",") } }] })
@@ -95,13 +112,19 @@ app.get("/posts/search", async (req, res) => {
       if (fs.existsSync(imagePath)) {
         base64Data = fs.readFileSync(imagePath, { encoding: "base64" });
       } else {
-        base64Data = fs.readFileSync("./postImages/notfound.jpeg").toString("base64");
+        base64Data = fs
+          .readFileSync("./postImages/notfound.jpeg")
+          .toString("base64");
       }
 
       post.file = "data:image/png;base64," + base64Data;
     });
 
-    res.json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(totalPosts / LIMIT) });
+    res.json({
+      data: posts,
+      currentPage: Number(page),
+      numberOfPages: Math.ceil(totalPosts / LIMIT),
+    });
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
@@ -118,7 +141,9 @@ app.get("/posts/:id", async (req, res) => {
     if (fs.existsSync(imagePath)) {
       base64Data = fs.readFileSync(imagePath, { encoding: "base64" });
     } else {
-      base64Data = fs.readFileSync("./postImages/notfound.jpeg").toString("base64");
+      base64Data = fs
+        .readFileSync("./postImages/notfound.jpeg")
+        .toString("base64");
     }
 
     posts.file = "data:image/png;base64," + base64Data;
@@ -206,7 +231,11 @@ app.patch("/:id/likePost", auth, async (req, res) => {
   } else {
     post.likes = post.likes.filter((id) => id !== String(req.userId));
   }
-  const updatedPost = await postDB.findByIdAndUpdate(id, { likes: post.likes }, { new: true });
+  const updatedPost = await postDB.findByIdAndUpdate(
+    id,
+    { likes: post.likes },
+    { new: true }
+  );
 
   res.json(updatedPost.likes);
 });
@@ -226,7 +255,11 @@ app.post("/:id/postComment", auth, async (req, res) => {
 
   post.comments.push(comment);
 
-  const updatedPost = await postDB.findByIdAndUpdate(id, { comments: post.comments }, { new: true });
+  const updatedPost = await postDB.findByIdAndUpdate(
+    id,
+    { comments: post.comments },
+    { new: true }
+  );
 
   res.json(updatedPost.comments);
 });
@@ -249,13 +282,19 @@ app.post("/users/login", async (req, res) => {
   try {
     const existingUser = await userDB.findOne({ email });
 
-    if (!existingUser) return res.status(404).json({ message: "User doesn't exist" });
+    if (!existingUser)
+      return res.status(404).json({ message: "User doesn't exist" });
 
     const validPassword = await bcrypt.compare(password, existingUser.password);
 
-    if (!validPassword) return res.status(400).json({ message: "Invalid password" });
+    if (!validPassword)
+      return res.status(400).json({ message: "Invalid password" });
 
-    const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, "sk", { expiresIn: "1hr" });
+    const token = jwt.sign(
+      { email: existingUser.email, id: existingUser._id },
+      "sk",
+      { expiresIn: "1hr" }
+    );
 
     res.status(200).json({ result: existingUser, token });
   } catch (error) {
@@ -273,12 +312,19 @@ app.post("/users/signup", async (req, res) => {
       return res.status(400).json({ message: "Account already exists." });
     }
 
-    if (password !== repassword) return res.status(400).json({ message: "Passwords do not match." });
+    if (password !== repassword)
+      return res.status(400).json({ message: "Passwords do not match." });
 
     const hashedPass = await bcrypt.hash(password, 12);
 
-    const result = await userDB.create({ email, password: hashedPass, name: `${firstName} ${lastName}` });
-    const token = jwt.sign({ email: result.email, id: result._id }, "sk", { expiresIn: "1hr" });
+    const result = await userDB.create({
+      email,
+      password: hashedPass,
+      name: `${firstName} ${lastName}`,
+    });
+    const token = jwt.sign({ email: result.email, id: result._id }, "sk", {
+      expiresIn: "1hr",
+    });
 
     res.status(200).json({ result, token });
   } catch (error) {
