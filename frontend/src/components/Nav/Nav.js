@@ -5,7 +5,6 @@ import decode from "jwt-decode";
 
 import { logout } from "../../redux/User.js";
 
-import image from "../../public/img/rec.jpeg";
 import "./Nav.css";
 
 const Nav = () => {
@@ -42,7 +41,7 @@ const Nav = () => {
     <>
       <nav>
         <Link to="/">
-          <img className="header_img" src={image} alt="N/A" />
+          <img className="header_img" src="/img/rec.jpeg" alt="N/A" />
         </Link>
         <div>
           {user ? (

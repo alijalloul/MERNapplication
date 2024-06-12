@@ -7,7 +7,6 @@ import LikeBtn from "./LikeBtn/LikeBtn.js";
 import DeleteBtn from "./DeleteBtn/DeleteBtn.js";
 import EditBtn from "./EditBtn/EditBtn.js";
 
-import postImage from "../../../../public/img/empty.jpg";
 import "./Post.css";
 
 const Post = ({ postInfo, setSelectedPostId }) => {
@@ -62,9 +61,9 @@ const Post = ({ postInfo, setSelectedPostId }) => {
           <img
             src={
               postInfo.file == null
-                ? postImage
+                ? "/img/empty.jpg"
                 : !postInfo.file
-                ? postImage
+                ? "/img/empty.jpg"
                 : postInfo.file
             }
             alt="N/A"

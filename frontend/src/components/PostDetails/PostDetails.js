@@ -7,8 +7,6 @@ import Loader from "../Loader/Loader.js";
 import Comments from "./Comments/Comments.js";
 import { fetchPostById, fetchPostsBySearch } from "../../redux/Post.js";
 
-import postImage from "../../public/img/empty.jpg";
-
 import "./PostDetails.css";
 
 const PostDetails = () => {
@@ -80,9 +78,9 @@ const PostDetails = () => {
               <img
                 src={
                   postInfo.file == null
-                    ? postImage
+                    ? "/img/empty.jpg"
                     : !postInfo.file
-                    ? postImage
+                    ? "/img/empty.jpg"
                     : postInfo.file
                 }
                 alt="N/A"
@@ -111,9 +109,9 @@ const PostDetails = () => {
                     <img
                       src={
                         post.file == null
-                          ? postImage
+                          ? "/img/empty.jpg"
                           : !post.file
-                          ? postImage
+                          ? "/img/empty.jpg"
                           : post.file
                       }
                       alt="N/A"
